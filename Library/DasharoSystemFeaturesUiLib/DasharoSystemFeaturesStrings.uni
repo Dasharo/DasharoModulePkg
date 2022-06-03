@@ -14,9 +14,6 @@
 #string STR_EMPTY_STRING       #language en-US  ""
 #string STR_EXIT_STRING        #language en-US  "Press ESC to exit."
 
-#string STR_GO_BACK_TITLE      #language en-US  "Go back"
-#string STR_GO_BACK_HELP       #language en-US  "Return to parent menu"
-
 #string STR_EDKII_MENU_TITLE   #language en-US  "Dasharo System Features"
 #string STR_EDKII_MENU_HELP    #language en-US  "This selection will take you to Dasharo System Features Manager"
 
