@@ -104,9 +104,10 @@ DasharoSystemFeaturesUiLibConstructor (
         sizeof (mLockBiosDefault),
         &mLockBiosDefault
         );
+    mDasharoSystemFeaturesPrivate.DasharoFeaturesData.LockBios = mLockBiosDefault;
   }
 
-  if (Status) {
+  if (EFI_ERROR(Status)) {
     return Status;
   }
 
