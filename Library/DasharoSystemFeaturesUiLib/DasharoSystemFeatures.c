@@ -11,8 +11,10 @@ SPDX-License-Identifier: BSD-2-Clause
 
 STATIC EFI_GUID mDasharoSystemFeaturesGuid = DASHARO_SYSTEM_FEATURES_FORMSET_GUID;
 STATIC CHAR16 mVarStoreName[] = L"FeaturesData";
-STATIC CHAR16 mLockBitsEfiVar[] = L"LockBios";
+STATIC CHAR16 mLockBiosEfiVar[] = L"LockBios";
+STATIC CHAR16 mSmmBwpEfiVar[] = L"SmmBwp";
 STATIC BOOLEAN mLockBiosDefault = TRUE;
+STATIC BOOLEAN mSmmBwpDefault = FALSE;
 
 STATIC DASHARO_SYSTEM_FEATURES_PRIVATE_DATA  mDasharoSystemFeaturesPrivate = {
   DASHARO_SYSTEM_FEATURES_PRIVATE_DATA_SIGNATURE,
@@ -94,7 +96,7 @@ DasharoSystemFeaturesUiLibConstructor (
 
   BufferSize = sizeof (mDasharoSystemFeaturesPrivate.DasharoFeaturesData.LockBios);
   Status = gRT->GetVariable (
-      mLockBitsEfiVar,
+      mLockBiosEfiVar,
       &mDasharoSystemFeaturesGuid,
       NULL,
       &BufferSize,
@@ -103,13 +105,37 @@ DasharoSystemFeaturesUiLibConstructor (
 
   if (Status == EFI_NOT_FOUND) {
     Status = gRT->SetVariable (
-        mLockBitsEfiVar,
+        mLockBiosEfiVar,
         &mDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (mLockBiosDefault),
         &mLockBiosDefault
         );
     mDasharoSystemFeaturesPrivate.DasharoFeaturesData.LockBios = mLockBiosDefault;
+  }
+
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+
+  BufferSize = sizeof (mDasharoSystemFeaturesPrivate.DasharoFeaturesData.SmmBwp);
+  Status = gRT->GetVariable (
+      mSmmBwpEfiVar,
+      &mDasharoSystemFeaturesGuid,
+      NULL,
+      &BufferSize,
+      &mDasharoSystemFeaturesPrivate.DasharoFeaturesData.SmmBwp
+      );
+
+  if (Status == EFI_NOT_FOUND) {
+    Status = gRT->SetVariable (
+        mSmmBwpEfiVar,
+        &mDasharoSystemFeaturesGuid,
+        EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
+        sizeof (mSmmBwpDefault),
+        &mSmmBwpDefault
+        );
+    mDasharoSystemFeaturesPrivate.DasharoFeaturesData.SmmBwp = mSmmBwpDefault;
   }
 
   if (EFI_ERROR(Status)) {
@@ -304,11 +330,24 @@ DasharoSystemFeaturesRouteConfig (
 
   if (Private->DasharoFeaturesData.LockBios != DasharoFeaturesData.LockBios) {
     Status = gRT->SetVariable (
-        mLockBitsEfiVar,
+        mLockBiosEfiVar,
         &mDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (DasharoFeaturesData.LockBios),
         &DasharoFeaturesData.LockBios
+        );
+    if (EFI_ERROR (Status)) {
+      return Status;
+    }
+  }
+
+  if (Private->DasharoFeaturesData.SmmBwp != DasharoFeaturesData.SmmBwp) {
+    Status = gRT->SetVariable (
+        mSmmBwpEfiVar,
+        &mDasharoSystemFeaturesGuid,
+        EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
+        sizeof (DasharoFeaturesData.SmmBwp),
+        &DasharoFeaturesData.SmmBwp
         );
     if (EFI_ERROR (Status)) {
       return Status;
