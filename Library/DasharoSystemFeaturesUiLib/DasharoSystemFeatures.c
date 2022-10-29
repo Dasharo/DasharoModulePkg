@@ -101,7 +101,7 @@ DasharoSystemFeaturesUiLibConstructor (
 
   BufferSize = sizeof (mDasharoSystemFeaturesPrivate.DasharoFeaturesData.LockBios);
   Status = gRT->GetVariable (
-      mLockBitsEfiVar,
+      mLockBiosEfiVar,
       &gDasharoSystemFeaturesGuid,
       NULL,
       &BufferSize,
@@ -110,7 +110,7 @@ DasharoSystemFeaturesUiLibConstructor (
 
   if (Status == EFI_NOT_FOUND) {
     Status = gRT->SetVariable (
-        mLockBitsEfiVar,
+        mLockBiosEfiVar,
         &gDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (mLockBiosDefault),
@@ -399,7 +399,7 @@ DasharoSystemFeaturesRouteConfig (
 
   if (Private->DasharoFeaturesData.LockBios != DasharoFeaturesData.LockBios) {
     Status = gRT->SetVariable (
-        mLockBitsEfiVar,
+        mLockBiosEfiVar,
         &gDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (DasharoFeaturesData.LockBios),
