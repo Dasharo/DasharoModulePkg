@@ -215,7 +215,7 @@ DasharoSystemFeaturesUiLibConstructor (
   BufferSize = sizeof (mDasharoSystemFeaturesPrivate.DasharoFeaturesData.MeMode);
   Status = gRT->GetVariable (
       mMeModeEfiVar,
-      &mDasharoSystemFeaturesGuid,
+      &gDasharoSystemFeaturesGuid,
       NULL,
       &BufferSize,
       &mDasharoSystemFeaturesPrivate.DasharoFeaturesData.MeMode
@@ -224,7 +224,7 @@ DasharoSystemFeaturesUiLibConstructor (
   if (Status == EFI_NOT_FOUND) {
     Status = gRT->SetVariable (
         mMeModeEfiVar,
-        &mDasharoSystemFeaturesGuid,
+        &gDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (mMeModeDefault),
         &mMeModeDefault
@@ -490,7 +490,7 @@ DasharoSystemFeaturesRouteConfig (
   if (Private->DasharoFeaturesData.MeMode != DasharoFeaturesData.MeMode) {
     Status = gRT->SetVariable (
         mMeModeEfiVar,
-        &mDasharoSystemFeaturesGuid,
+        &gDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (DasharoFeaturesData.MeMode),
         &DasharoFeaturesData.MeMode
