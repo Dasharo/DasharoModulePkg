@@ -76,6 +76,11 @@ formset
              flags  = INTERACTIVE,
     endcheckbox;
 
+    subtitle text = STRING_TOKEN(STR_EMPTY_STRING);
+    subtitle text = STRING_TOKEN(STR_EMPTY_STRING);
+    subtitle text = STRING_TOKEN(STR_EXIT_STRING);
+  endform;
+
   form formid = DASHARO_USB_CONFIGURATION_FORM_ID,
        title  = STRING_TOKEN(STR_DASHARO_USB_CONFIGURATION_TITLE);
 
