@@ -59,4 +59,5 @@
 #string STR_ME_MODE_DISABLE_HAP		#language en-US  "Disabled (HAP)"
 
 #string STR_PS2_CONTROLLER_ENABLE_PROMPT   #language en-US  "Enable PS2 Controller"
-#string STR_PS2_CONTROLLER_ENABLE_HELP     #language en-US  "Enables/disables the PS2 Controller. When enabled, PS/2 keyboards and mice will be detected in the firmware and operating system."
+#string STR_PS2_CONTROLLER_ENABLE_HELP     #language en-US  "Enables/disables the PS/2 Controller. When enabled, PS/2 keyboards and mice will be detected in the firmware and operating system."
+
