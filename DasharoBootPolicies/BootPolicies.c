@@ -48,7 +48,7 @@ InitializeBootPolicies (
   mUsbStackPolicy.UsbStackEnabled		= TRUE;
   mUsbMassStoragePolicy.Revision		= USB_MASS_STORAGE_POLICY_PROTOCOL_REVISION_01;
   mUsbMassStoragePolicy.UsbMassStorageEnabled	= TRUE;
-  mPs2ControllerPolicy.Revision			= USB_MASS_STORAGE_POLICY_PROTOCOL_REVISION_01;
+  mPs2ControllerPolicy.Revision			= PS2_CONTROLLER_POLICY_PROTOCOL_REVISION_01;
   mPs2ControllerPolicy.Ps2ControllerEnabled	= TRUE;
 
   Status = GetVariable2 (
