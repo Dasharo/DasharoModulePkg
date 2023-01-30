@@ -24,7 +24,6 @@ STATIC CHAR16 mUsbMassStorageEfiVar[] = L"UsbMassStorage";
 STATIC CHAR16 mPs2ControllerEfiVar[] = L"Ps2Controller";
 STATIC CHAR16 mWatchdogEfiVar[] = L"WatchdogConfig";
 STATIC CHAR16 mWatchdogStateEfiVar[] = L"WatchdogAvailable";
-STATIC CHAR16 mFanCurveEfiVar[] = L"FanCurve";
 STATIC CHAR16 mFanCurveOptionEfiVar[] = L"FanCurveOption";
 
 STATIC BOOLEAN   mUsbStackDefault = TRUE;
@@ -34,11 +33,6 @@ STATIC BOOLEAN   mSmmBwpDefault = FALSE;
 STATIC UINT8     mMeModeDefault   = ME_MODE_ENABLE;
 STATIC BOOLEAN   mPs2ControllerDefault = TRUE;
 STATIC UINT8     mFanCurveOptionDefault = FAN_CURVE_OPTION_SILENT;
-
-STATIC FAN_CURVE mFanCurveList[] = {
-  [FAN_CURVE_OPTION_SILENT]      = FAN_CURVE_SILENT,
-  [FAN_CURVE_OPTION_PERFORMANCE] = FAN_CURVE_PERFORMANCE
-};
 
 STATIC DASHARO_SYSTEM_FEATURES_PRIVATE_DATA  mDasharoSystemFeaturesPrivate = {
   DASHARO_SYSTEM_FEATURES_PRIVATE_DATA_SIGNATURE,
@@ -461,15 +455,6 @@ DasharoSystemFeaturesUiLibConstructor (
         &mDasharoSystemFeaturesPrivate.DasharoFeaturesData.FanCurveOption
         );
     ASSERT_EFI_ERROR (Status);
-    mDasharoSystemFeaturesPrivate.DasharoFeaturesData.FanCurve = mFanCurveList[mFanCurveOptionDefault];
-    Status = gRT->SetVariable (
-        mFanCurveEfiVar,
-        &gDasharoSystemFeaturesGuid,
-        EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
-        sizeof (mDasharoSystemFeaturesPrivate.DasharoFeaturesData.FanCurve),
-        &mDasharoSystemFeaturesPrivate.DasharoFeaturesData.FanCurve
-        );
-    ASSERT_EFI_ERROR (Status);
   }
   return EFI_SUCCESS;
 }
@@ -749,17 +734,6 @@ DasharoSystemFeaturesRouteConfig (
   }
 
   if (Private->DasharoFeaturesData.FanCurveOption != DasharoFeaturesData.FanCurveOption) {
-    DasharoFeaturesData.FanCurve = mFanCurveList[DasharoFeaturesData.FanCurveOption];
-    Status = gRT->SetVariable (
-        mFanCurveEfiVar,
-        &gDasharoSystemFeaturesGuid,
-        EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
-        sizeof (DasharoFeaturesData.FanCurve),
-        &DasharoFeaturesData.FanCurve
-        );
-    if (EFI_ERROR (Status)) {
-      return Status;
-    }
     Status = gRT->SetVariable (
         mFanCurveOptionEfiVar,
         &gDasharoSystemFeaturesGuid,
