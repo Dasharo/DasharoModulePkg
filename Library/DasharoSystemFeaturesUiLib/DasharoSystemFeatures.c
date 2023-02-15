@@ -38,7 +38,6 @@ STATIC UINT8     mFanCurveOptionDefault = FAN_CURVE_OPTION_SILENT;
 STATIC BOOLEAN   mDmaProtectionDefault = TRUE;
 STATIC BOOLEAN   mIommuHandoffDefault = TRUE;
 
-
 STATIC DASHARO_SYSTEM_FEATURES_PRIVATE_DATA  mDasharoSystemFeaturesPrivate = {
   DASHARO_SYSTEM_FEATURES_PRIVATE_DATA_SIGNATURE,
   NULL,
@@ -826,7 +825,7 @@ DasharoSystemFeaturesRouteConfig (
 
   if (Private->DasharoFeaturesData.IommuHandoff != DasharoFeaturesData.IommuHandoff) {
     Status = gRT->SetVariable (
-        mDmaProtectionEfiVar,
+        mIommuHandoffEfiVar,
         &gDasharoSystemFeaturesGuid,
         EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_NON_VOLATILE,
         sizeof (DasharoFeaturesData.IommuHandoff),
