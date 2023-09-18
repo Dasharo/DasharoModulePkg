@@ -33,13 +33,8 @@ STATIC CHAR16 mPowerFailureStateEfiVar[] = L"PowerFailureState";
 STATIC CHAR16 mResizeableBarsEnabledEfiVar[] = L"PCIeResizeableBarsEnabled";
 STATIC CHAR16 mOptionRomPolicyEfiVar[] = L"OptionRomPolicy";
 STATIC CHAR16 mEnableCameraEfiVar[] = L"EnableCamera";
-<<<<<<< HEAD
 STATIC CHAR16 mEnableWifiBtEfiVar[] = L"EnableWifiBt";
-STATIC CHAR16 mBatteryStartThresholdEfiVar[] = L"BatteryStartThreshold";
-STATIC CHAR16 mBatteryStopThresholdEfiVar[] = L"BatteryStopThreshold";
-=======
 STATIC CHAR16 mBatteryConfigEfiVar[] = L"BatteryConfig";
->>>>>>> efa98d1a988d (Store both bat thresholds in single efivar)
 
 STATIC BOOLEAN   mUsbStackDefault = TRUE;
 STATIC BOOLEAN   mUsbMassStorageDefault = TRUE;
