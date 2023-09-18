@@ -1060,10 +1060,6 @@ DasharoSystemFeaturesRouteConfig (
     }
   }
 
-  if(DasharoFeaturesData.BatteryConfig.StartThreshold > DasharoFeaturesData.BatteryConfig.StopThreshold) {
-    return EFI_INVALID_PARAMETER;
-  }
-
   if (Private->DasharoFeaturesData.BatteryConfig.StartThreshold !=
         DasharoFeaturesData.BatteryConfig.StartThreshold ||
       Private->DasharoFeaturesData.BatteryConfig.StopThreshold !=
