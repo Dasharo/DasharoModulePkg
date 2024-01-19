@@ -14,31 +14,31 @@
 #string STR_EMPTY_STRING       #language en-US  ""
 #string STR_EXIT_STRING        #language en-US  "Press ESC to exit."
 
-#string STR_EDKII_MENU_TITLE   #language en-US  "Dasharo System Features"
+#string STR_EDKII_MENU_TITLE   #language en-US  "Advanced Configuration"
 #string STR_EDKII_MENU_HELP    #language en-US  "This selection will take you to Dasharo System Features Manager"
 
-#string STR_DASHARO_SECURITY_OPTIONS_TITLE   #language en-US  "Dasharo Security Options"
+#string STR_DASHARO_SECURITY_OPTIONS_TITLE   #language en-US  "Security"
 #string STR_DASHARO_SECURITY_OPTIONS_HELP    #language en-US  "Security-related options"
 
-#string STR_DASHARO_NETWORKING_OPTIONS_TITLE   #language en-US  "Networking Options"
+#string STR_DASHARO_NETWORKING_OPTIONS_TITLE   #language en-US  "Networking"
 #string STR_DASHARO_NETWORKING_OPTIONS_HELP    #language en-US  "Network-related options"
 
-#string STR_DASHARO_USB_CONFIGURATION_TITLE   #language en-US  "USB Configuration"
+#string STR_DASHARO_USB_CONFIGURATION_TITLE   #language en-US  "USB"
 #string STR_DASHARO_USB_CONFIGURATION_HELP    #language en-US  "USB-related options"
 
-#string STR_DASHARO_CHIPSET_CONFIGURATION_TITLE   #language en-US  "Chipset Configuration"
+#string STR_DASHARO_CHIPSET_CONFIGURATION_TITLE   #language en-US  "Chipset"
 #string STR_DASHARO_CHIPSET_CONFIGURATION_HELP    #language en-US  "Chipset-related options"
 
-#string STR_DASHARO_POWER_CONFIGURATION_TITLE   #language en-US  "Power Management Options"
+#string STR_DASHARO_POWER_CONFIGURATION_TITLE   #language en-US  "Power Management"
 #string STR_DASHARO_POWER_CONFIGURATION_HELP    #language en-US  "Power management-related options"
 
-#string STR_DASHARO_PCI_CONFIGURATION_TITLE   #language en-US  "PCI/PCIe Configuration"
+#string STR_DASHARO_PCI_CONFIGURATION_TITLE   #language en-US  "PCI/PCIe"
 #string STR_DASHARO_PCI_CONFIGURATION_HELP    #language en-US  "PCI/PCIe configuration options"
 
-#string STR_DASHARO_MEMORY_CONFIGURATION_TITLE   #language en-US  "Memory Configuration"
+#string STR_DASHARO_MEMORY_CONFIGURATION_TITLE   #language en-US  "Memory"
 #string STR_DASHARO_MEMORY_CONFIGURATION_HELP    #language en-US  "Memory-related options"
 
-#string STR_DASHARO_SERIAL_PORT_CONFIGURATION_TITLE   #language en-US  "Serial Port Configuration"
+#string STR_DASHARO_SERIAL_PORT_CONFIGURATION_TITLE   #language en-US  "Serial Port"
 #string STR_DASHARO_SERIAL_PORT_CONFIGURATION_HELP    #language en-US  "Serial port options"
 
 #string STR_FUM_PROMPT   #language en-US  "> Enter Firmware Update Mode"
