@@ -33,8 +33,9 @@ typedef struct {
   UINT32  Attributes;  // EFI variable attributes for this variable.
 } VAR_INFO;
 
-// List of all Dasharo EFI variables in gDasharoSystemFeaturesGuid namespace.
-STATIC CHAR16 *mAllVariables[] = {
+// List of Dasharo EFI variables in gDasharoSystemFeaturesGuid namespace that
+// are created if missing.
+STATIC CHAR16 *mAutoCreatedVariables[] = {
   DASHARO_VAR_BATTERY_CONFIG,
   DASHARO_VAR_BOOT_MANAGER_ENABLED,
   DASHARO_VAR_CPU_MAX_TEMPERATURE,
@@ -43,7 +44,6 @@ STATIC CHAR16 *mAllVariables[] = {
   DASHARO_VAR_ENABLE_CAMERA,
   DASHARO_VAR_ENABLE_WIFI_BT,
   DASHARO_VAR_FAN_CURVE_OPTION,
-  DASHARO_VAR_FIRMWARE_UPDATE_MODE,
   DASHARO_VAR_IOMMU_CONFIG,
   DASHARO_VAR_LOCK_BIOS,
   DASHARO_VAR_MEMORY_PROFILE,
@@ -113,9 +113,6 @@ GetVariableInfo (
   } else if (StrCmp (VarName, DASHARO_VAR_FAN_CURVE_OPTION) == 0) {
     Data.Uint8 = DASHARO_FAN_CURVE_OPTION_SILENT;
     Size = sizeof (Data.Uint8);
-  } else if (StrCmp (VarName, DASHARO_VAR_FIRMWARE_UPDATE_MODE) == 0) {
-    Data.Boolean = FALSE;
-    Size = sizeof (Data.Boolean);
   } else if (StrCmp (VarName, DASHARO_VAR_IOMMU_CONFIG) == 0) {
     Data.Iommu.IommuEnable = FALSE;
     Data.Iommu.IommuHandoff = FALSE;
@@ -425,10 +422,10 @@ DasharoVariablesLibConstructor (
 {
   UINTN  Idx;
 
-  // Create any Dasharo-specific variables that are missing by initializing
+  // Create Dasharo-specific variables that are missing by initializing
   // them with default values.
-  for (Idx = 0; Idx < ARRAY_SIZE (mAllVariables); Idx++)
-    InitVariable (mAllVariables[Idx]);
+  for (Idx = 0; Idx < ARRAY_SIZE (mAutoCreatedVariables); Idx++)
+    InitVariable (mAutoCreatedVariables[Idx]);
 
   return EFI_SUCCESS;
 }
