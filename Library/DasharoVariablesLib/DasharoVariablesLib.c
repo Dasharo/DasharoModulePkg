@@ -42,7 +42,8 @@ typedef struct {
 // List of Dasharo EFI variables in gDasharoSystemFeaturesGuid namespace that
 // are created if missing. Each variable should have a FixedAtBuild PCD which
 // controls the visibility/activity of the variable in the project and must be
-// used to determiene whether the variable should be created or not.
+// used to determine whether the variable should be created or not.
+
 STATIC CONST AUTO_VARIABLE mAutoCreatedVariables[] = {
   { DASHARO_VAR_BATTERY_CONFIG, FixedPcdGetBool (PcdShowPowerMenu) && FixedPcdGetBool (PcdPowerMenuShowBatteryThresholds) },
   { DASHARO_VAR_BOOT_MANAGER_ENABLED, FixedPcdGetBool (PcdShowSecurityMenu) && FixedPcdGetBool (PcdDasharoEnterprise) },
