@@ -139,7 +139,8 @@ DasharoSystemFeaturesUiLibConstructor (
   EFI_STATUS  Status;
   UINTN       BufferSize;
 
-  if (!FixedPcdGetBool (PcdShowMenu))
+  /* FIXME: FixedPcdGetBool does not work here. Why?  */
+  if (!PcdGetBool (PcdShowMenu))
     return EFI_SUCCESS;
 
   mDasharoSystemFeaturesPrivate.DriverHandle = NULL;
