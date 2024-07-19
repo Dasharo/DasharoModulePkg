@@ -13,6 +13,7 @@
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
+#include <Library/SortLib.h>
 #include <Library/TpmMeasurementLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
@@ -380,7 +381,6 @@ MeasureVariables (
   EFI_GUID    Guid;
   CHAR16      **Names;
   UINTN       NameCount;
-  CHAR16      SortBuf;
   UINTN       MaxNameCount;
   UINTN       Index;
 
@@ -455,13 +455,7 @@ MeasureVariables (
     // Achieve predictable ordering of variables by sorting them by name within
     // a particular vendor.
     //
-    QuickSort (
-        Names,
-        NameCount,
-        sizeof (*Names),
-        CompareVariableNames,
-        &SortBuf
-        );
+    PerformQuickSort (Names, NameCount, sizeof (*Names), CompareVariableNames);
 
     for (Index = 0; Index < NameCount; Index++) {
       Status = MeasureVariable (Names[Index], Vendor);
